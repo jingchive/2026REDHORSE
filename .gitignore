@@ -1,5 +1,27 @@
-node_modules
-dist
-*.log
+# Dependencies
+node_modules/
+# package-lock.json  ← 이 줄을 삭제하거나 앞에 #을 붙여서 주석처리
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+. env.local
+
+# Editor
+. vscode/
+.idea/
+
+# OS
 .DS_Store
-package-lock.json
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp files
+*.tmp
+*.swp
