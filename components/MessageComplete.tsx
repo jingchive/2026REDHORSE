@@ -5,13 +5,6 @@ import horseSvgPaths from "../imports/svg-on6a90b19c";
 import { CountdownTimer } from './CountdownTimer';
 import { Link } from 'lucide-react';
 
-// Kakao SDK 타입 선언
-declare global {
-  interface Window {
-    Kakao: any;
-  }
-}
-
 interface MessageCompleteProps {
   selectedHorse: number;
   selectedColor: string;
@@ -175,18 +168,28 @@ export function MessageComplete({ selectedHorse, selectedColor, horseName, messa
   };
 
   const handleKakaoShare = () => {
+    // Kakao SDK 로드 확인
     if (!window.Kakao) {
       alert('카카오톡 공유 기능을 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
       return;
     }
 
+    // Kakao SDK 초기화 확인
     if (!window.Kakao.isInitialized()) {
-      window.Kakao.init('785cc33b3c9b83d3bf013fa54540e12d');
+      try {
+        window.Kakao.init('785cc33b3c9b83d3bf013fa54540e12d');
+        console.log('Kakao SDK initialized in share handler');
+      } catch (error) {
+        console.error('Failed to initialize Kakao SDK:', error);
+        alert('카카오톡 초기화에 실패했습니다. 페이지를 새로고침해주세요.');
+        return;
+      }
     }
 
     try {
       console.log('Sending Kakao share with template ID: 126774, path:', `result?id=${cardId}`);
       
+      // 커스텀 템플릿을 사용한 카카오톡 공유
       window.Kakao.Share.sendCustom({
         templateId: 126774,
         templateArgs: {
