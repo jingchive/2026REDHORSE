@@ -3,7 +3,7 @@ import svgPaths from "../imports/svg-95p6kcpsps";
 import completeSvgPaths from "../imports/svg-ui0et2zooy";
 import horseSvgPaths from "../imports/svg-on6a90b19c";
 import { CountdownTimer } from './CountdownTimer';
-import { Link } from 'lucide-react';
+import { Link } from 'lucide-react@0.487.0';
 
 interface MessageCompleteProps {
   selectedHorse: number;
